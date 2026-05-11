@@ -1,0 +1,19 @@
+{
+  "name": "ider_massinissa_devoir_api_port_plaisance",
+  "version": "1.0.0",
+  "description": "API REST pour la gestion du port de plaisance Russell",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/IderMassinissa/Ider_Massinissa_Devoir_API_Port_Plaisance.git"
+  },
+  "author": "Ider Massinissa",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+}
