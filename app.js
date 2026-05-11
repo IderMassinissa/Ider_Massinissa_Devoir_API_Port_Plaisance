@@ -6,6 +6,7 @@ const authRoutes = require("./routes/auth");
 const catwayRoutes = require("./routes/catways");
 const reservationRoutes = require("./routes/reservations");
 const userRoutes = require("./routes/users");
+const cookieParser = require("cookie-parser");
 
 const app = express();
 
@@ -13,6 +14,7 @@ app.set("view engine", "ejs");
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
+app.use(cookieParser());
 
 mongoose
   .connect(process.env.MONGODB_URI)
