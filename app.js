@@ -8,6 +8,8 @@ const reservationRoutes = require("./routes/reservations");
 const userRoutes = require("./routes/users");
 const cookieParser = require("cookie-parser");
 const methodOverride = require("method-override");
+const swaggerUi = require("swagger-ui-express");
+const swaggerSpec = require("./docs/swagger");
 
 const app = express();
 
@@ -17,6 +19,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
 app.use(cookieParser());
 app.use(methodOverride("_method"));
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 mongoose
   .connect(process.env.MONGODB_URI)
