@@ -7,6 +7,7 @@ const catwayRoutes = require("./routes/catways");
 const reservationRoutes = require("./routes/reservations");
 const userRoutes = require("./routes/users");
 const cookieParser = require("cookie-parser");
+const methodOverride = require("method-override");
 
 const app = express();
 
@@ -15,6 +16,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
 app.use(cookieParser());
+app.use(methodOverride("_method"));
 
 mongoose
   .connect(process.env.MONGODB_URI)

@@ -17,6 +17,7 @@
     "nodemon": "^3.1.14"
   },
   "dependencies": {
-    "cookie-parser": "^1.4.7"
+    "cookie-parser": "^1.4.7",
+    "method-override": "^3.0.0"
   }
 }

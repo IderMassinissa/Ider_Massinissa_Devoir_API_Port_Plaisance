@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Modifier un utilisateur - Port Russell</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <nav>
+      <a href="/dashboard">Tableau de bord</a>
+      <a href="/catways">Catways</a>
+      <a href="/users">Utilisateurs</a>
+      <a href="/logout">Se déconnecter</a>
+    </nav>
+
+    <div class="container">
+      <h1>Modifier l'utilisateur</h1>
+
+      <form action="/users/<%= user.email %>?_method=PUT" method="POST">
+        <div>
+          <label for="username">Nom d'utilisateur</label>
+          <input
+            type="text"
+            id="username"
+            name="username"
+            value="<%= user.username %>"
+            required
+          />
+        </div>
+        <div>
+          <label for="email">Email</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            value="<%= user.email %>"
+            required
+          />
+        </div>
+        <div>
+          <label for="password">Mot de passe</label>
+          <input type="password" id="password" name="password" />
+        </div>
+        <button type="submit">Modifier</button>
+      </form>
+
+      <a href="/users">Retour</a>
+    </div>
+  </body>
+</html>

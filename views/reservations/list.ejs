@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Réservations - Port Russell</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <nav>
+        <a href="/dashboard">Tableau de bord</a>
+        <a href="/catways">Catways</a>
+        <a href="/users">Utilisateurs</a>
+        <a href="/logout">Se déconnecter</a>
+    </nav>
+
+    <div class="container">
+        <h1>Réservations du catway n°<%= catwayNumber %></h1>
+
+        <h2>Ajouter une réservation</h2>
+        <form action="/catways/<%= catwayNumber %>/reservations" method="POST">
+            <div>
+                <label for="clientName">Client</label>
+                <input type="text" id="clientName" name="clientName" required>
+            </div>
+            <div>
+                <label for="boatName">Bateau</label>
+                <input type="text" id="boatName" name="boatName" required>
+            </div>
+            <div>
+                <label for="startDate">Date de début</label>
+                <input type="date" id="startDate" name="startDate" required>
+            </div>
+            <div>
+                <label for="endDate">Date de fin</label>
+                <input type="date" id="endDate" name="endDate" required>
+            </div>
+            <button type="submit">Ajouter</button>
+        </form>
+
+        <h2>Liste des réservations</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Client</th>
+                    <th>Bateau</th>
+                    <th>Début</th>
+                    <th>Fin</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% reservations.forEach(reservation => { %>
+                <tr>
+                    <td><%= reservation.clientName %></td>
+                    <td><%= reservation.boatName %></td>
+                    <td><%= new Date(reservation.startDate).toLocaleDateString('fr-FR') %></td>
+                    <td><%= new Date(reservation.endDate).toLocaleDateString('fr-FR') %></td>
+                    <td>
+                        <form action="/catways/<%= catwayNumber %>/reservations/<%= reservation._id %>?_method=DELETE" method="POST">
+                            <button type="submit">Supprimer</button>
+                        </form>
+                    </td>
+                </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
