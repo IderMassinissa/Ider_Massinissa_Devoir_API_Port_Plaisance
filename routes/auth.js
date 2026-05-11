@@ -4,6 +4,7 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const User = require("../models/user");
 const Reservation = require("../models/reservation");
+const auth = require("../middlewares/auth");
 
 router.get("/", (req, res) => {
   res.render("index");
