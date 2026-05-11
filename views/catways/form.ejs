@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Modifier un catway - Port Russell</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <nav>
+      <a href="/dashboard">Tableau de bord</a>
+      <a href="/catways">Catways</a>
+      <a href="/users">Utilisateurs</a>
+      <a href="/logout">Se déconnecter</a>
+    </nav>
+
+    <div class="container">
+      <h1>Modifier l'état du catway n°<%= catway.catwayNumber %></h1>
+
+      <form
+        action="/catways/<%= catway.catwayNumber %>?_method=PUT"
+        method="POST"
+      >
+        <div>
+          <label for="catwayState">État</label>
+          <input
+            type="text"
+            id="catwayState"
+            name="catwayState"
+            value="<%= catway.catwayState %>"
+            required
+          />
+        </div>
+        <button type="submit">Modifier</button>
+      </form>
+
+      <a href="/catways">Retour</a>
+    </div>
+  </body>
+</html>

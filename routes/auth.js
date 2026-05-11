@@ -3,6 +3,7 @@ const router = express.Router();
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const User = require("../models/user");
+const Reservation = require("../models/reservation");
 
 router.get("/", (req, res) => {
   res.render("index");
@@ -44,8 +45,18 @@ router.get("/logout", (req, res) => {
   res.redirect("/");
 });
 
-router.get("/dashboard", (req, res) => {
-  res.render("dashboard");
+router.get("/dashboard", auth, async (req, res) => {
+  try {
+    const user = await User.findById(req.user.id);
+    const now = new Date();
+    const reservations = await Reservation.find({
+      startDate: { $lte: now },
+      endDate: { $gte: now },
+    });
+    res.render("dashboard", { user, reservations });
+  } catch (err) {
+    res.status(500).json({ message: "Erreur serveur" });
+  }
 });
 
 module.exports = router;
